@@ -5,4 +5,5 @@
 void read_number(size_t* N)
 {
 	try_input_number(N);	
+	printf("\n");
 }

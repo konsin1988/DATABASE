@@ -1,3 +1,3 @@
 #include <stdbool.h>
 
-bool try_input_number(int* value);
+bool try_input_number(size_t* value);
