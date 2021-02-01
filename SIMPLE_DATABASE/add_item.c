@@ -7,7 +7,7 @@
 
 void add_item(ITEM** pupils, size_t* N)
 {
-	if(*N==19)
+	if(*N==29)
 	{
 		fprintf(stderr, "Can't add any element\n");
 		return;
