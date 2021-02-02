@@ -155,6 +155,37 @@ int main(int argc, char** argv)
 			free(classes);
 		}
 	}
+
+	else if(!strcmp(argv[1], "--del"))
+	{
+		if(argc != 3) print_requires_more(argv[1]);
+		else if(strlen(argv[2]) > 3 || 
+			strlen(argv[2]) < 2) print_too_long(argv[1]);
+		else
+		{
+			CLASSES** classes = create_list_of_classes(M);
+			load_list_of_classes(classes, &m);
+			if(search_class(argv[2], classes, m, filename))
+			{
+				ITEM** pupils = create_array(N);
+				load_pupils(pupils, &n, filename);
+				if(del_item(argv[2], pupils, &n))
+					printf("\n\t***Pupil successfully deleted***\n\n");
+				else 
+					printf("\n\t***Operation failed***\n\n");
+				save_pupils(pupils, n, filename);
+				free(pupils);
+
+			}
+			else
+			{
+				printf("\n\t***Class %s "
+				  "doesn't exist***\n\n",argv[2]);
+			}
+			save_classes(classes, m);
+			free(classes);
+		}
+	}
 	//else if(!strcmp(argv[1], "--print"))
 	//{
 
@@ -167,7 +198,6 @@ int main(int argc, char** argv)
 	//load_list_of_classes(classes, &m);	
 	//print_all_items(pupils, N);
 	//add_item(pupils, &N);
-	//del_item(pupils, &N);
 	//save_pupils(pupils, N);
 	//load_pupils(pupils, N);
 	else

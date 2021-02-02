@@ -13,12 +13,12 @@ void add_item(ITEM** pupils, size_t* n)
 		return;
 	}
 
-	printf("Number of pupil is %zu\n\n", *n);
-	printf("Enter lastname > \n");
+	printf("\n\t>>Number of pupil is %zu:\n\n", *n+1);
+	printf(">Enter lastname > \n");
 	read_string(pupils[*n]->lastname);
-	printf("Enter firstname > \n");
+	printf(">Enter firstname > \n");
 	read_string(pupils[*n]->firstname);
-	printf("Enter age > \n");
+	printf(">Enter age > \n");
 	read_number(&pupils[*n]->age);
 
 	(*n)++;
