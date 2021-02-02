@@ -2,14 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 int main(int argc, char** argv)
 {
-	char* a = malloc(10 * sizeof(char));
-	char* b = malloc(10 * sizeof(char));
-	scanf("%s", a);
-	printf("%s\n", a);
-	strcat(b, a);
-	strcat(b, ".dat");
-	printf("%s\n", b);
+	struct glod
+	{
+		char* a;
+		int b;
+	} A;
+	sscanf("glob", "%s", A.a);
+	A.b = 20;
+	printf("%s - %d", A.a, A.b);
 	return 0;
 }

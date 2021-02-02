@@ -12,7 +12,7 @@ int remove_class(char* arg, CLASSES** classes, size_t* m, char* filename)
 	system(command);
 	search_index_class(arg, classes, *m, &index_remove);
 	for(size_t i = index_remove; i<*m-1; ++i)
-		*((*classes[i]).name) = *((*classes[i+1]).name);
+		sscanf(classes[i+1]->name, "%s", classes[i]->name);
 	(*m)--;
 	if(!search_class(arg, classes, *m, filename))
 	{

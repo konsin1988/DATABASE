@@ -13,9 +13,9 @@ void load_list_of_classes(CLASSES** classes, size_t* m)
 		fprintf(stderr, "Unable to open 'list_of_classes.dat'\n");
 		return;
 	}
-	fscanf(F, "%zu/n", m);
+	fscanf(F, "%zu", m);
 	for(size_t i=0; i<*m; ++i)
-		fscanf(F, "%s/n", (*classes[i]).name);
+		fscanf(F, "%s", (*classes[i]).name);
 
 	fclose(F);
 }

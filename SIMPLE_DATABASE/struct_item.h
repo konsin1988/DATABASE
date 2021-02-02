@@ -4,7 +4,7 @@
 
 typedef struct tagITEM
 {
-	char lastname[20], firstname[20];
+	char lastname[25], firstname[25];
 	size_t age;
 } ITEM;
 #endif

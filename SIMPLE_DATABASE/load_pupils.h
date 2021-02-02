@@ -2,4 +2,4 @@
 #include <stddef.h>
 #include "struct_item.h"
 
-void load_pupils(ITEM** pupils, size_t N);
+void load_pupils(ITEM** pupils, size_t* n, char* filename);

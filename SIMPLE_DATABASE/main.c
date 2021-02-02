@@ -33,7 +33,7 @@
 #define M 20
 
 size_t n, m;	//Real number of items
-char filename[10];
+char filename[15];
 
 int main(int argc, char** argv)
 {
@@ -42,14 +42,15 @@ int main(int argc, char** argv)
 	else if(!strcmp(argv[1], "--create"))
 	{
 		if(argc != 3) print_requires_more(argv[1]);
-		else if(strlen(argv[2]) > 3) print_too_long(argv[1]);
+		else if(strlen(argv[2]) > 3 || 
+			strlen(argv[2]) < 2) print_too_long(argv[1]);
 		else
 		{
 			CLASSES** classes = create_list_of_classes(M);
 			load_list_of_classes(classes, &m);
 			if(search_class(argv[2], classes, m, filename))
 			{
-				printf("\n\t***Class %s is " 
+				printf("\n\t***Class %s " 
 				"already exists***\n\n", argv[2]);
 			}
 			else
@@ -66,12 +67,13 @@ int main(int argc, char** argv)
 			save_classes(classes, m);
 			free(classes);
 		}
-
 	}
-	else if(!strcmp(argv[1], "--remove"))
+	
+	else if(!strcmp(argv[1], "--rmcl"))
 	{
 		if(argc != 3) print_requires_more(argv[1]);
-		else if(strlen(argv[2]) > 3) print_too_long(argv[1]);
+		else if(strlen(argv[2]) > 3 || 
+			strlen(argv[2]) < 2) print_too_long(argv[1]);
 		else
 		{
 			CLASSES** classes = create_list_of_classes(M);
@@ -85,7 +87,7 @@ int main(int argc, char** argv)
 				"successfully remove***\n\n", argv[2]);
 				}
 				else
-					printf("\n\t***Operation failed***");
+					printf("\n\t***Operation failed***\n\n");
 			}
 			else
 			{
@@ -95,9 +97,64 @@ int main(int argc, char** argv)
 			save_classes(classes, m);
 			free(classes);
 		}
-
 	}
 	
+	else if(!strcmp(argv[1], "--print"))
+	{
+		if(argc != 3) print_requires_more(argv[1]);
+		else if(strlen(argv[2]) > 3 || 
+			strlen(argv[2]) < 2) print_too_long(argv[1]);
+		else
+		{
+			CLASSES** classes = create_list_of_classes(M);
+			load_list_of_classes(classes, &m);
+			if(search_class(argv[2], classes, m, filename))
+			{
+				ITEM** pupils = create_array(N);
+				load_pupils(pupils, &n, filename);
+				print_all_items(pupils, n);
+				save_pupils(pupils, n, filename);
+				free(pupils);
+
+			}
+			else
+			{
+				printf("\n\t***Class %s "
+				  "doesn't exist***\n\n",argv[2]);
+			}
+			save_classes(classes, m);
+			free(classes);
+		}
+	}
+
+	else if(!strcmp(argv[1], "--add"))
+	{
+		if(argc != 3) print_requires_more(argv[1]);
+		else if(strlen(argv[2]) > 3 || 
+			strlen(argv[2]) < 2) print_too_long(argv[1]);
+		else
+		{
+			CLASSES** classes = create_list_of_classes(M);
+			load_list_of_classes(classes, &m);
+			if(search_class(argv[2], classes, m, filename))
+			{
+				ITEM** pupils = create_array(N);
+				load_pupils(pupils, &n, filename);
+				add_item(pupils, &n);
+				sort_pupils(pupils, n);
+				save_pupils(pupils, n, filename);
+				free(pupils);
+
+			}
+			else
+			{
+				printf("\n\t***Class %s "
+				  "doesn't exist***\n\n",argv[2]);
+			}
+			save_classes(classes, m);
+			free(classes);
+		}
+	}
 	//else if(!strcmp(argv[1], "--print"))
 	//{
 
@@ -113,7 +170,8 @@ int main(int argc, char** argv)
 	//del_item(pupils, &N);
 	//save_pupils(pupils, N);
 	//load_pupils(pupils, N);
-	//sort_pupils(pupils, N);
+	else
+		printf("\n\t***Command not found***\n\n");
 
 	
 	return 0;

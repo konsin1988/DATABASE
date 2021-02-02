@@ -4,6 +4,6 @@
 #define __STRUCT_CLASSES_
 typedef struct cl_list 
 {
-	char name[5];
+	char name[8];
 } CLASSES;
 #endif
